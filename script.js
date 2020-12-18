@@ -1,5 +1,5 @@
 var options = ["*", "0", "3000", "2500", "4000", "1000", "0", "**", "4500", "5000", "0", "1000", "2000", "***", "0", "3500", "1000", "1000"];
-
+let point =0;
 var startAngle = 0;
 var arc = Math.PI / (options.length / 2);
 var spinTimeout = null;
@@ -116,7 +116,19 @@ function stopRotateWheel() {
   var index = Math.floor((360 - degrees % 360) / arcd);
   ctx.save();
   ctx.font = 'bold 30px Helvetica, Arial';
-  var text = options[index]// Text - то что мы выиграли 
+  var text = options[index]
+  if(text != '**' && text != '***'){
+  if(text == '*')
+  {
+    point = 0;
+  }
+  else{
+    text= Number(text);
+    point = point + text;
+  }
+}
+var element = document.getElementById("point");
+element.innerHTML = point;
   ctx.fillText(text, 250 - ctx.measureText(text).width / 2, 250 + 10);
   ctx.restore();
 }
